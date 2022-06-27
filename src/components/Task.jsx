@@ -3,7 +3,7 @@ import "./Task.css";
 
 const Task = ({task}) => {
     return <div className='task-container'>
-        {task.id+task.title+task.completed}
+        {task.title}
 
     </div>;
 }

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { BrowserRouter as Router} from 'react-router-dom';
 
 import './App.css'
 import AddTask from './components/AddTask';
+import Header from './components/Header';
 import Tasks from './components/Tasks';
 
 const App = () => {
@@ -18,9 +20,23 @@ const App = () => {
       title: 'Superman',
       completed: true,
     }
-    
+  ]); // this is where the magic happens
 
-  ]); // this is where the magic happens 
+  const handleTaskDeletion = (taskId) => {
+    const newTasks = tasks.filter( (task) => task.id != taskId)
+    
+    setTasks(newTasks)
+  }
+
+  const handleTaskClick = (taskId) => {
+  const newTasks = tasks.map(task => {
+    if (task.id == taskId) return { ... task, completed: !task.completed};
+
+    return task;
+  });
+
+  setTasks(newTasks)
+  };
 
   const handleTaskAddition = (taskTitle) => {
     const newTasks = [... tasks, {
@@ -33,13 +49,17 @@ const App = () => {
   };
 
   return (
-    <>
+    <Router>
     <div className="container">
-      <AddTask handleTaskAddition={handleTaskAddition}/>
-      <Tasks tasks={tasks}/>
+      <Header />
+      <AddTask handleTaskAddition={handleTaskAddition} />
+      <Tasks tasks={tasks} 
+      handleTaskClick={handleTaskClick} 
+      handleTaskDeletion={handleTaskDeletion}
+      />
 
       </div>
-    </>
+    </ Router>
   );
 }
 

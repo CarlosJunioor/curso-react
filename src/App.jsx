@@ -51,7 +51,7 @@ const App = () => {
   return (
     <Router>
     <div className="container">
-      <Header />+
+      <Header />
         <AddTask handleTaskAddition={handleTaskAddition} />
       <Tasks tasks={tasks} 
       handleTaskClick={handleTaskClick} 

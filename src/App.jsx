@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { BrowserRouter as Router} from 'react-router-dom';
+import { BrowserRouter as Router, Route} from 'react-router-dom';
 
 import './App.css'
 import AddTask from './components/AddTask';
@@ -23,7 +23,7 @@ const App = () => {
   ]); // this is where the magic happens
 
   const handleTaskDeletion = (taskId) => {
-    const newTasks = tasks.filter( (task) => task.id != taskId)
+    const newTasks = tasks.filter( (task) => task.id !== taskId)
     
     setTasks(newTasks)
   }
@@ -51,16 +51,16 @@ const App = () => {
   return (
     <Router>
     <div className="container">
-      <Header />
-      <AddTask handleTaskAddition={handleTaskAddition} />
+      <Header />+
+        <AddTask handleTaskAddition={handleTaskAddition} />
       <Tasks tasks={tasks} 
       handleTaskClick={handleTaskClick} 
       handleTaskDeletion={handleTaskDeletion}
       />
-
+      
       </div>
     </ Router>
   );
-}
+};
 
 export default App;
